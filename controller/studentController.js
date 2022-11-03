@@ -22,11 +22,11 @@ const getPagination =async (req, res) => {
   try {
     const resp= await Student.findAndCountAll({
       limit: size,
-      offset:page*size,
+      offset:(page-1)*size,
       where: {
         firstName:
-        {
-          //[Op.like]: '%req.query.firstName%'
+        { 
+          // [Op.like]: `req.body.name}%` 
           [Op.or]: [
             { [Op.like]: `%${req.body.firstName}%` },
             { [Op.like]: `${req.body.firstName}%` },
